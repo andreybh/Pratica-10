@@ -1,0 +1,16 @@
+%class Lexer
+%unicode
+%cup
+
+[ \t\n\r]+                     { /* ignora espaços em branco */ }
+[0-9]+                         { return new Symbol(sym.NUMBER, Integer.parseInt(yytext())); }
+"+"                            { return new Symbol(sym.PLUS); }
+"-"                            { return new Symbol(sym.MINUS); }
+"*"                            { return new Symbol(sym.MULT); }
+"/"                            { return new Symbol(sym.DIV); }
+"%"                            { return new Symbol(sym.MOD); }
+"^"                            { return new Symbol(sym.POW); }
+"("                            { return new Symbol(sym.LPAREN); }
+")"                            { return new Symbol(sym.RPAREN); }
+
+.                              { System.err.println("Caractere inválido: " + yytext()); return null; }
